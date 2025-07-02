@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KGK Insights Survey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 2em;
+      text-align: center;
+    }
+    .question-box {
+      background: white;
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question { display: none; }
+    .question.active { display: block; }
+    .progress-container {
+      width: 100%;
+      background-color: #ccc;
+      height: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #ff7900;
+      transition: width 0.4s ease;
+    }
+    .progress-text {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 0;
+      line-height: 20px;
+      font-size: 0.9em;
+      font-weight: bold;
+      color: white;
+    }
+    .question p {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin: 0.5em auto;
+      max-width: 400px;
+      background: #eee;
+      padding: 0.6em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  label:hover {
+    background-color: #ff7900;
+    color: white;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    #thank-you {
+      display: none;
+      padding: 2em;
+      font-size: 1.2em;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.5em 1.2em;
+      font-size: 1em;
+      border: none;
+      background-color: #ff7900;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://i.imgur.com/2GwBZ1Z.png" alt="KGK Logo" style="max-width: 200px; height: auto; margin-bottom: 1em;">
+  <h1>KGK Insights Survey</h1>
+
+  <div class="progress-container" id="progress-container">
+    <div id="progress-bar" class="progress-bar"></div>
+    <div id="progress-text" class="progress-text">0%</div>
+  </div>
+
+  <div class="question-box" id="question-box">
+    <!-- Questions Q1 to Q11 -->
+    <div class="question active" id="q1">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 1: Industry Reputation & DSHEA Reform</h3>
+      <p>How would you describe the current federal regulatory oversight of the U.S. dietary supplement industry?</p>
+      <label><input type="radio" name="q1" value="Over-regulated"> Over-regulated</label>
+      <label><input type="radio" name="q1" value="Under-regulated"> Under-regulated</label>
+      <label><input type="radio" name="q1" value="Just right"> Just right</label>
+      <label><input type="radio" name="q1" value="Not sure"> Not sure</label>
+    </div>
+
+    <div class="question" id="q2">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 1: Industry Reputation & DSHEA Reform</h3>
+      <p>Has recent media coverage had a negative impact on your business?</p>
+      <label><input type="radio" name="q2" value="Yes"> Yes</label>
+      <label><input type="radio" name="q2" value="No"> No</label>
+      <label><input type="radio" name="q2" value="Somewhat"> Somewhat</label>
+      <label><input type="radio" name="q2" value="Not sure"> Not sure</label>
+    </div>
+
+    <div class="question" id="q3">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 1: Industry Reputation & DSHEA Reform</h3>
+      <p>Do you anticipate RFK Jr.’s actions to have a negative impact on your business?</p>
+      <label><input type="radio" name="q3" value="Yes"> Yes</label>
+      <label><input type="radio" name="q3" value="No"> No</label>
+      <label><input type="radio" name="q3" value="Possibly"> Possibly</label>
+      <label><input type="radio" name="q3" value="Not sure"> Not sure</label>
+    </div>
+
+    <div class="question" id="q4">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 1: Industry Reputation & DSHEA Reform</h3>
+      <p>Do you believe DSHEA strikes the right balance between access and safety?</p>
+      <label><input type="radio" name="q4" value="Yes"> Yes</label>
+      <label><input type="radio" name="q4" value="No"> No</label>
+      <label><input type="radio" name="q4" value="Needs review"> Needs review</label>
+      <label><input type="radio" name="q4" value="Not familiar with DSHEA"> Not familiar with DSHEA</label>
+    </div>
+
+    <div class="question" id="q5">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 1: Industry Reputation & DSHEA Reform</h3>
+      <p>What level of reform would you support for DSHEA?</p>
+      <label><input type="radio" name="q5" value="Major overhaul"> Major overhaul</label>
+      <label><input type="radio" name="q5" value="Minor tweaks"> Minor tweaks</label>
+      <label><input type="radio" name="q5" value="No changes needed"> No changes needed</label>
+      <label><input type="radio" name="q5" value="Not sure"> Not sure</label>
+    </div>
+
+    <div class="question" id="q6">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>Should the FDA have expanded authority to remove unsafe products without proving “significant risk”?</p>
+      <label><input type="radio" name="q6" value="Yes"> Yes</label>
+      <label><input type="radio" name="q6" value="No"> No</label>
+      <label><input type="radio" name="q6" value="Only with stricter guardrails"> Only with stricter guardrails</label>
+      <label><input type="radio" name="q6" value="Not sure"> Not sure</label>
+    </div>
+    
+    <div class="question" id="q7">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>Have you considered completing any of the following for U.S. market access? (Select all that apply)</p>
+      <label><input type="checkbox" name="q7" value="NDI Notification"> NDI Notification</label>
+      <label><input type="checkbox" name="q7" value="Self-affirmed GRAS Conclusion"> Self-affirmed GRAS Conclusion</label>
+      <label><input type="checkbox" name="q7" value="GRAS Notice to FDA"> GRAS Notice to FDA</label>
+      <button onclick="submitCheckbox('q7')">Next</button>
+    </div>
+    
+    <div class="question" id="q8">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>Are you currently considering submitting an NDI or GRAS notice?</p>
+      <label><input type="radio" name="q8" value="Yes"> Yes</label>
+      <label><input type="radio" name="q8" value="No"> No</label>
+      <label><input type="radio" name="q8" value="Already submitted one"> Already submitted one</label>
+    </div>
+
+    <div class="question" id="q9">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>What would make you hesitant to complete an NDI Notification?</p>
+      <label><input type="radio" name="q9" value="Old ingredient with proof"> Old ingredient with proof</label>
+      <label><input type="radio" name="q9" value="Uncertain if old"> Uncertain if old</label>
+      <label><input type="radio" name="q9" value="Too expensive"> Too expensive</label>
+      <label><input type="radio" name="q9" value="No ROI"> No ROI</label>
+    </div>
+
+    <div class="question" id="q10">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>What would prevent you from completing a self-affirmed GRAS conclusion?</p>
+      <label><input type="radio" name="q10" value="We don’t need one"> We don’t need one</label>
+      <label><input type="radio" name="q10" value="Too expensive"> Too expensive</label>
+      <label><input type="radio" name="q10" value="No ROI"> No ROI</label>
+      <label><input type="radio" name="q10" value="Waiting for policy changes"> Waiting for policy changes</label>
+    </div>
+    
+    <div class="question" id="q11">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>What would make you avoid submitting a GRAS Notice to FDA for your food ingredient?</p>
+      <input type="text" name="q11" id="q11_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q11')">Submit</button>
+    </div>
+    
+    <div class="question" id="q12">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>Should the FDA take regulatory action on “NDI piggybacking”?</p>
+      <label><input type="radio" name="q12" value="Yes"> Yes</label>
+      <label><input type="radio" name="q12" value="No"> No</label>
+      <label><input type="radio" name="q12" value="Need clarity"> Need clarity</label>
+    </div>
+
+    <div class="question" id="q13">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 2: FDA Authority & DSHEA Modernization</h3>
+      <p>Which regulatory system would you prefer for dietary supplements?</p>
+      <label><input type="radio" name="q13" value="Pre-market notification"> Pre-market notification</label>
+      <label><input type="radio" name="q13" value="Pre-market approval"> Pre-market approval</label>
+      <label><input type="radio" name="q13" value="Hybrid / Other"> Hybrid / Other</label>
+      <label><input type="radio" name="q13" value="Not sure"> Not sure</label>
+    </div>
+
+    <!-- Add after your existing q13 -->
+
+    <!-- Q14 -->
+    <div class="question" id="q14">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>How familiar are you with the current Self-GRAS process for food and dietary supplement ingredients?</p>
+      <label><input type="radio" name="q14" value="Very familiar"> Very familiar</label>
+      <label><input type="radio" name="q14" value="Somewhat familiar"> Somewhat familiar</label>
+      <label><input type="radio" name="q14" value="Heard of it"> Heard of it, but not sure how it works</label>
+      <label><input type="radio" name="q14" value="Not familiar"> Not familiar at all</label>
+    </div>
+    
+    <!-- Q15 -->
+    <div class="question" id="q15">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>Do you believe Self-GRAS notifications should be publicly disclosed to the FDA?</p>
+      <label><input type="radio" name="q15" value="Yes"> Yes</label>
+      <label><input type="radio" name="q15" value="No"> No</label>
+      <label><input type="radio" name="q15" value="Not sure"> Not sure</label>
+    </div>
+    
+    <!-- Q16 -->
+    <div class="question" id="q16">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>Does your company currently prefer self-GRAS determinations over submitting GRAS Notices to the FDA?</p>
+      <label><input type="radio" name="q16" value="Yes"> Yes</label>
+      <label><input type="radio" name="q16" value="Prefer GRAS Notices"> No, we prefer submitting GRAS Notices</label>
+      <label><input type="radio" name="q16" value="Considering"> Not currently doing either, but considering it</label>
+      <label><input type="radio" name="q16" value="Not needed"> We don’t need to do them</label>
+    </div>
+    
+    <!-- Q17 -->
+    <div class="question" id="q17">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>Should companies be allowed to market ingredients based on self-determined GRAS status without FDA oversight?</p>
+      <label><input type="radio" name="q17" value="Yes"> Yes</label>
+      <label><input type="radio" name="q17" value="No"> No</label>
+      <label><input type="radio" name="q17" value="Conditional"> Only under certain conditions</label>
+    </div>
+    
+    <!-- Q18 -->
+    <div class="question" id="q18">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>Do you support the current administration’s plans to eliminate the self-affirmed GRAS pathway?</p>
+      <label><input type="radio" name="q18" value="Eliminate"> Yes, eliminate it</label>
+      <label><input type="radio" name="q18" value="Keep"> No, keep it</label>
+      <label><input type="radio" name="q18" value="Not sure"> Not sure / Need more information</label>
+    </div>
+    
+    <!-- Q19 -->
+    <div class="question" id="q19">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 3: Self-GRAS & Ingredient Transparency</h3>
+      <p>If the current self-affirmed GRAS pathway is eliminated, should there be a similar regulatory option to support innovation?</p>
+      <label><input type="radio" name="q19" value="Yes"> Yes</label>
+      <label><input type="radio" name="q19" value="No"> No</label>
+      <label><input type="radio" name="q19" value="Modified"> With modifications</label>
+    </div>
+    
+    <!-- Q20 -->
+    <div class="question" id="q20">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 4: Mandatory Product Listing (MPL)</h3>
+      <p>Does the FDA currently have enough authority to remove products from the market without mandatory listing?</p>
+      <label><input type="radio" name="q20" value="Yes"> Yes</label>
+      <label><input type="radio" name="q20" value="No"> No</label>
+      <label><input type="radio" name="q20" value="Not sure"> Not sure</label>
+    </div>
+    
+    <!-- Q21 -->
+    <div class="question" id="q21">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 4: Mandatory Product Listing (MPL)</h3>
+      <p>Do you support the implementation of Mandatory Product Listing (MPL) for dietary supplements?</p>
+      <label><input type="radio" name="q21" value="Yes"> Yes</label>
+      <label><input type="radio" name="q21" value="No"> No</label>
+      <label><input type="radio" name="q21" value="Depends"> Maybe, depending on how it's implemented</label>
+    </div>
+    
+    <!-- Q22 (Combo) -->
+    <div class="question" id="q22">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 4: Mandatory Product Listing (MPL)</h3>
+      <p>What concerns do you have about MPL? (Select all that apply)</p>
+      <label><input type="checkbox" name="q22" value="Increased regulatory burden"> Increased regulatory burden</label>
+      <label><input type="checkbox" name="q22" value="Intellectual property risks"> Intellectual property risks</label>
+      <label><input type="checkbox" name="q22" value="Potential FDA overreach"> Potential FDA overreach</label>
+      <label><input type="checkbox" name="q22" value="Retailer pressure"> Retailer pressure</label>
+      <label><input type="checkbox" name="q22" value="No concerns"> No concerns</label>
+      <label>Other (please specify): <input type="text" name="q22" id="q22_other" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;"></label>
+      <button onclick="submitComboCheckbox('q22')">Next</button>
+    </div>
+    
+    <!-- Q23 -->
+    <div class="question" id="q23">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 4: Mandatory Product Listing (MPL)</h3>
+      <p>Is MPL essential for industry credibility, retailer confidence, and consumer safety?</p>
+      <label><input type="radio" name="q23" value="Yes"> Yes</label>
+      <label><input type="radio" name="q23" value="No"> No</label>
+      <label><input type="radio" name="q23" value="Somewhat"> Somewhat</label>
+      <label><input type="radio" name="q23" value="Not sure"> Not sure</label>
+    </div>
+    
+    <!-- Q24 to Q27 (Text) -->
+    <div class="question" id="q24">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 5: Open-Ended Regulatory Insight (MPL)</h3>
+      <p>What’s your biggest concern about the future of dietary supplement innovation in the U.S.?</p>
+      <input type="text" name="q24" id="q24_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q24')">Next</button>
+    </div>
+    
+    <div class="question" id="q25">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 5: Open-Ended Regulatory Insight (MPL)</h3>
+      <p>Which dietary supplement regulations do you believe should be targeted for elimination?</p>
+      <input type="text" name="q25" id="q25_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q25')">Next</button>
+    </div>
+    
+    <div class="question" id="q26">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 5: Open-Ended Regulatory Insight (MPL)</h3>
+      <p>What new regulations should the FDA implement to boost consumer confidence and strengthen oversight?</p>
+      <input type="text" name="q26" id="q26_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q26')">Next</button>
+    </div>
+    
+    <div class="question" id="q27">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 5: Open-Ended Regulatory Insight (MPL)</h3>
+      <p>What keeps you up at night from a regulatory perspective?</p>
+      <input type="text" name="q27" id="q27_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q27')">Next</button>
+    </div>
+    
+    <!-- Q28 (checkbox) -->
+    <div class="question" id="q28">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 5: Open-Ended Regulatory Insight (MPL)</h3>
+      <p>Do you need help with any of the following? (Select all that apply)</p>
+      <label><input type="checkbox" name="q28" value="NDI Notification"> NDI Notification</label>
+      <label><input type="checkbox" name="q28" value="GRAS Conclusion"> GRAS Conclusion</label>
+      <label><input type="checkbox" name="q28" value="U.S. Market Access Strategy"> U.S. Market Access Strategy</label>
+      <label><input type="checkbox" name="q28" value="Not at this time"> Not at this time</label>
+      <button onclick="submitCheckbox('q28')">Next</button>
+    </div>
+    
+    <!-- Q29 -->
+    <div class="question" id="q29">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 6: Education & Content Preferences</h3>
+      <p>Would you listen to a podcast designed exclusively for dietary supplement professionals?</p>
+      <label><input type="radio" name="q29" value="Yes"> Yes</label>
+      <label><input type="radio" name="q29" value="No"> No</label>
+      <label><input type="radio" name="q29" value="Maybe"> Maybe</label>
+    </div>
+    
+    <!-- Q30–31 (text) -->
+    <div class="question" id="q30">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 6: Education & Content Preferences</h3>
+      <p>What white paper topics would you be most interested in?</p>
+      <input type="text" name="q30" id="q30_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q30')">Next</button>
+    </div>
+    
+    <div class="question" id="q31">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 6: Education & Content Preferences</h3>
+      <p>What webinar topics would be valuable to your team?</p>
+      <input type="text" name="q31" id="q31_input" style="width: 90%; padding: 0.5em; border-radius: 6px; border: 1px solid #ccc;">
+      <button onclick="submitText('q31')">Next</button>
+    </div>
+    
+    <!-- Q32–36 (radio) -->
+    <div class="question" id="q32">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 7: Clinical Trials, Writing & Research Support</h3>
+      <p>Would a protocol synopsis help you assess the clinical potential of your product?</p>
+      <label><input type="radio" name="q32" value="Yes"> Yes</label>
+      <label><input type="radio" name="q32" value="No"> No</label>
+      <label><input type="radio" name="q32" value="Maybe later"> Maybe later</label>
+    </div>
+    
+    <div class="question" id="q33">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 7: Clinical Trials, Writing & Research Support</h3>
+      <p>Would you like our team to review your study design and results?</p>
+      <label><input type="radio" name="q33" value="Yes"> Yes</label>
+      <label><input type="radio" name="q33" value="No"> No</label>
+      <label><input type="radio" name="q33" value="Not applicable"> Not applicable</label>
+    </div>
+    
+    <div class="question" id="q34">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 7: Clinical Trials, Writing & Research Support</h3>
+      <p>Do you need medical writing support to publish your study results?</p>
+      <label><input type="radio" name="q34" value="Yes"> Yes</label>
+      <label><input type="radio" name="q34" value="No"> No</label>
+      <label><input type="radio" name="q34" value="Possibly"> Possibly in the future</label>
+    </div>
+    
+    <div class="question" id="q35">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 7: Clinical Trials, Writing & Research Support</h3>
+      <p>Would you like a customized clinical trial proposal?</p>
+      <label><input type="radio" name="q35" value="Yes"> Yes</label>
+      <label><input type="radio" name="q35" value="No"> No</label>
+      <label><input type="radio" name="q35" value="Considering"> Considering it</label>
+    </div>
+    
+    <div class="question" id="q36">
+      <h3 style="margin-bottom: 0.5em; color: #333;">Section 7: Clinical Trials, Writing & Research Support</h3>
+      <p>Would you like help calculating how many participants are needed for your next clinical trial?</p>
+      <label><input type="radio" name="q36" value="Yes"> Yes</label>
+      <label><input type="radio" name="q36" value="No"> No</label>
+      <label><input type="radio" name="q36" value="Already done"> Already done</label>
+    </div>
+
+  </div>
+
+  <div id="thank-you">
+    <h2>Thank you for completing the survey!</h2>
+    <p>Your responses have been recorded.</p>
+    <p><strong>– KGK Science Inc.</strong></p>
+  </div>
+
+  <script>
+    const total = 36;
+    let current = 1;
+    const answers = {};
+
+    function updateProgress() {
+      const percent = Math.floor((current - 1) / total * 100);
+      document.getElementById("progress-bar").style.width = percent + "%";
+      document.getElementById("progress-text").textContent = percent + "%";
+    }
+
+    function showNext() {
+      if (current < total) {
+        document.getElementById("q" + current).classList.remove("active");
+        current++;
+        document.getElementById("q" + current).classList.add("active");
+        updateProgress();
+      } else {
+        document.getElementById("progress-bar").style.width = "100%";
+        document.getElementById("progress-text").textContent = "100%";
+        document.getElementById("question-box").style.display = "none";
+        document.getElementById("progress-container").style.display = "none";
+        document.getElementById("thank-you").style.display = "block";
+
+        fetch("https://script.google.com/macros/s/AKfycbxdTwXSWjWLfnQhKuac02J-SePMms382N1Bc6Ex-BJa0K0EUq2G-JmHYhV_XzLwcl4ltw/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(answers)
+        });
+      }
+    }
+
+    for (let i = 1; i <= 36; i++) {
+      const inputs = document.querySelectorAll(`input[name=q${i}]`);
+      inputs.forEach(input => {
+        // Skip checkboxes — handled manually by submitCheckbox()
+        if (input.type === "radio") {
+          input.addEventListener("change", () => {
+            answers[`q${i}`] = input.value;
+            showNext();
+          });
+        }
+      });
+    }
+
+    function submitCheckbox(qid) {
+      const checkboxes = document.querySelectorAll(`input[name=${qid}]`);
+      answers[qid] = [];
+      checkboxes.forEach(cb => {
+        if (cb.checked) answers[qid].push(cb.value);
+      });
+      showNext();
+    }
+
+    function submitComboCheckbox(qid) {
+      const checkboxes = document.querySelectorAll(`input[name=${qid}]`);
+      const otherInput = document.getElementById(`${qid}_other`);
+      answers[qid] = [];
+    
+      checkboxes.forEach(cb => {
+        if (cb.checked) answers[qid].push(cb.value);
+      });
+    
+      if (otherInput && otherInput.value.trim()) {
+        answers[qid].push("Other: " + otherInput.value.trim());
+      }
+    
+      showNext();
+    }
+
+    function submitText(qid) {
+      const textInput = document.getElementById(`${qid}_input`);
+      answers[qid] = textInput.value.trim();
+      showNext();
+    }
+
+    updateProgress();
+  </script>
+</body>
+</html>
