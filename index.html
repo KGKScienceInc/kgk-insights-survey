@@ -439,7 +439,6 @@
     for (let i = 1; i <= 36; i++) {
       const inputs = document.querySelectorAll(`input[name=q${i}]`);
       inputs.forEach(input => {
-        // Skip checkboxes — handled manually by submitCheckbox()
         if (input.type === "radio") {
           input.addEventListener("change", () => {
             answers[`q${i}`] = input.value;
