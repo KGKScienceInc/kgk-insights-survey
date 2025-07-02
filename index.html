@@ -88,6 +88,9 @@
   <img src="https://i.imgur.com/2GwBZ1Z.png" alt="KGK Logo" style="max-width: 200px; height: auto; margin-bottom: 1em;">
   <h1>KGK Insights Survey</h1>
 
+  <input type="hidden" id="email" name="email">
+  <input type="hidden" id="name" name="name">
+
   <div class="progress-container" id="progress-container">
     <div id="progress-bar" class="progress-bar"></div>
     <div id="progress-text" class="progress-text">0%</div>
@@ -427,10 +430,14 @@
         document.getElementById("progress-container").style.display = "none";
         document.getElementById("thank-you").style.display = "block";
 
+        answers["email"] = document.getElementById("email").value;
+        answers["name"] = document.getElementById("name").value;
+
         fetch("https://script.google.com/macros/s/AKfycbzldYxI18Og3onE3QR0eH0gknjzw-6QsdenbbbmERdKyr30UaYgnXwd1BZDbx5inJ7QKQ/exec", {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
+
           body: JSON.stringify(answers)
         });
       }
@@ -480,6 +487,17 @@
     }
 
     updateProgress();
+  </script>
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || '';
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("email").value = getQueryParam("email");
+      document.getElementById("name").value = getQueryParam("name");
+    });
   </script>
 </body>
 </html>
