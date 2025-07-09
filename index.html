@@ -402,7 +402,10 @@
   <div id="thank-you">
     <h2>Thank you for completing the survey!</h2>
     <p>Your responses have been recorded.</p>
-    <p><strong>– KGK Science Inc.</strong></p>
+    <p><strong>Here is your discount code:</strong></p>
+    <p style="font-size: 1.8em; color: #ff7900; font-weight: bold;" id="discount-code">Loading...</p>
+    <button onclick="copyDiscountCode()">Copy Code</button>
+    <p style="margin-top: 1em;"><strong>– KGK Science Inc.</strong></p>
   </div>
 
   <script>
@@ -432,12 +435,15 @@
         answers["email"] = document.getElementById("email").value;
         answers["name"] = document.getElementById("name").value;
 
-        fetch("https://script.google.com/macros/s/AKfycbzl-ywNK4mrwW92_EPlQvCtOeek5U2y66mo96pokrgQzvE-6E1YoQyhcQm21ZnSQKEM1g/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbzKi7CZX4lzf573dwMyVG4VWIE-EsaWXbFAQlsvhLw18LtbX0F_DDtuCDDR3c6mpNLVOA/exec", {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
-
           body: JSON.stringify(answers)
+        })
+        .then(response => response.text())
+        .then(code => {
+        document.getElementById("discount-code").textContent = code || 'ABC12';
         });
       }
     }
@@ -492,7 +498,15 @@
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param) || '';
     }
-  
+
+    function copyDiscountCode() {
+      const code = document.getElementById("discount-code").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Discount code copied to clipboard!");
+      }).catch(err => {
+        alert("Failed to copy code. Please try manually.");
+      });
+    }
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("email").value = getQueryParam("email");
       document.getElementById("name").value = getQueryParam("name");
