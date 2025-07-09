@@ -434,16 +434,16 @@
 
         answers["email"] = document.getElementById("email").value;
         answers["name"] = document.getElementById("name").value;
+        
+        const discountCode = Math.random().toString(36).substring(2, 7).toUpperCase();
+        answers["discountCode"] = discountCode;
+        document.getElementById("discount-code").textContent = discountCode;
 
         fetch("https://script.google.com/macros/s/AKfycbzKi7CZX4lzf573dwMyVG4VWIE-EsaWXbFAQlsvhLw18LtbX0F_DDtuCDDR3c6mpNLVOA/exec", {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(answers)
-        })
-        .then(response => response.text())
-        .then(code => {
-        document.getElementById("discount-code").textContent = code || 'ABC12';
         });
       }
     }
